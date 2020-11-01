@@ -6,7 +6,11 @@ import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.GroupData;
 
 public class GroupHelper {
-    protected WebDriver wd;
+    private WebDriver wd;
+
+    public GroupHelper(WebDriver wd) {
+        this.wd = wd;
+    }
 
     //контакты
     public void initContactCreation() {
