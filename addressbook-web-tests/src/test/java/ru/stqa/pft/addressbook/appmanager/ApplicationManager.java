@@ -11,12 +11,14 @@ public class ApplicationManager {
 
     private SessionHelper sessionHelper;
     private NavigationHelper navigationHelper;
+    private ContactHelper contactHelper;
     private GroupHelper groupHelper;
 
     public void init() {
         wd = new FirefoxDriver();
         wd.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         wd.get("http://localhost/addressbook/");
+        contactHelper = new ContactHelper(wd);
         groupHelper = new GroupHelper(wd);
         navigationHelper = new NavigationHelper(wd);
         sessionHelper = new SessionHelper(wd);
@@ -26,6 +28,10 @@ public class ApplicationManager {
     public void stop() {
         wd.findElement(By.linkText("Logout")).click();
         wd.quit();
+    }
+
+    public ContactHelper getContactHelper() {
+        return contactHelper;
     }
 
     public GroupHelper getGroupHelper() {
