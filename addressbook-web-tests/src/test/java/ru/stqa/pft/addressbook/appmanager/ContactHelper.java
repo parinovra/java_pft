@@ -30,12 +30,21 @@ public class ContactHelper extends HelperBase {
     }
 
     public void selectContact() {
-        click(By.id("24"));
+        click(By.id("27"));
     }
 
     public void deleteSelectedContacts() {
         //    acceptNextAlert = true;
         click(By.xpath("//input[@value='Delete']"));
         //    assertTrue(closeAlertAndGetItsText().matches("^Delete 1 addresses[\\s\\S]$"));
+        wd.switchTo().alert().accept();
+    }
+
+    public void initContactModification() {
+        click(By.xpath("//img[@alt='Edit']"));
+    }
+
+    public void submitContactModification() {
+        click(By.xpath("(//input[@name='update'])[2]"));
     }
 }
