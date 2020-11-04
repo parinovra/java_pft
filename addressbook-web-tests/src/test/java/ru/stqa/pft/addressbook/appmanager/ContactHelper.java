@@ -25,20 +25,7 @@ public class ContactHelper extends HelperBase {
         click(By.xpath("(//input[@name='submit'])[2]"));
     }
 
-    public void returnToHomePage() {
-        click(By.linkText("home page"));
-    }
 
-    public void selectContact() {
-        click(By.id("27"));
-    }
-
-    public void deleteSelectedContacts() {
-        //    acceptNextAlert = true;
-        click(By.xpath("//input[@value='Delete']"));
-        //    assertTrue(closeAlertAndGetItsText().matches("^Delete 1 addresses[\\s\\S]$"));
-        wd.switchTo().alert().accept();
-    }
 
     public void initContactModification() {
         click(By.xpath("//img[@alt='Edit']"));
@@ -46,5 +33,23 @@ public class ContactHelper extends HelperBase {
 
     public void submitContactModification() {
         click(By.xpath("(//input[@name='update'])[2]"));
+    }
+
+
+
+    public void selectContact() {
+        click(By.id("46"));
+    }
+
+    public void deleteSelectedContacts() {
+        click(By.xpath("//input[@value='Delete']"));
+        wd.switchTo().alert().accept();
+    }
+
+
+
+    public void returnToHomePage() {
+//        click(By.linkText("home page")); //контекстная
+        click(By.linkText("home")); //сверху в меню
     }
 }
