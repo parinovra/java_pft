@@ -38,7 +38,8 @@ public class ContactHelper extends HelperBase {
 
 
     public void selectContact() {
-        click(By.id("46"));
+//        click(By.id("46"));
+        click(By.name("selected[]"));
     }
 
     public void deleteSelectedContacts() {
