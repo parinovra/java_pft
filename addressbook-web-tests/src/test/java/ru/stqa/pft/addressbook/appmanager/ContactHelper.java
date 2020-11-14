@@ -14,6 +14,7 @@ public class ContactHelper extends HelperBase {
     }
 
     public void initContactCreation() {
+        
         click(By.linkText("add new"));
     }
 
