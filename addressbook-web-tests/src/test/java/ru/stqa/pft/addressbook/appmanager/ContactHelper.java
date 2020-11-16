@@ -93,7 +93,7 @@ public class ContactHelper extends HelperBase {
         for (WebElement element : elements) {
             String firstName = element.getText();
             String lastName = element.getText(); //добавил строку
-            String id = element.findElement(By.tagName("input")).getAttribute("value");
+            int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value")); //тут падает
             ContactData contact = new ContactData(id, firstName, lastName, null, null, null);
             contacts.add(contact);
         }
