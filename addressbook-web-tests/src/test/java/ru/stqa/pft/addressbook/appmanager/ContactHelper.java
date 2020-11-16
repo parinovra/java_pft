@@ -92,7 +92,9 @@ public class ContactHelper extends HelperBase {
         List<WebElement> elements = wd.findElements(By.cssSelector("td.center")); //подобрать путевый локатор
         for (WebElement element : elements) {
             String firstName = element.getText();
-            ContactData contact = new ContactData(firstName, null, null, null, null);
+            String lastName = element.getText(); //добавил строку
+            String id = element.findElement(By.tagName("input")).getAttribute("value");
+            ContactData contact = new ContactData(id, firstName, lastName, null, null, null);
             contacts.add(contact);
         }
         return contacts;
