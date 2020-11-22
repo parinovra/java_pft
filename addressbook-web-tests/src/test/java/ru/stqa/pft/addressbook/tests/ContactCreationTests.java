@@ -15,15 +15,16 @@ public class ContactCreationTests extends TestBase {
     public void ensurePreconditions() {
         if (app.group().list().size() == 0) {
             app.goTo().groupPage();
-            app.group().create(new GroupData("test2", null, null));
+            app.group().create(new GroupData().withName("test2"));
         }
     }
 
-    @Test(enabled = false)
+    @Test(enabled = true)
     public void testContactCreation() throws Exception {
         app.contact().returnToHomePage();
         List<ContactData> before = app.contact().list();
-        ContactData contact = new ContactData("John", "Doe", "88001234567", "johndoe@mail.com", "test1");
+        ContactData contact = new ContactData().withFirstName("John").withLastName("Doe").withMobile("88001234567")
+                .withEmail("johndoe@test.com").withGroup("test1");
         app.contact().create(contact, true);
         app.contact().returnToHomePage();
         List<ContactData> after = app.contact().list();
