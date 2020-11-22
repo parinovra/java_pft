@@ -10,7 +10,7 @@ import java.util.List;
 
 public class ContactModificationTests extends TestBase {
 
-    @Test
+    @Test(enabled = false)
     public void testContactModification() {
         if (! app.getContactHelper().isThereAContact()) {
             app.getContactHelper().createContact(new ContactData("John", "Doe", "19007654321", "johndoe@mail.com", "test1"), true);
