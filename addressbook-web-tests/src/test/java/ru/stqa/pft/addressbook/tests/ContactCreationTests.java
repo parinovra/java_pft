@@ -23,7 +23,7 @@ public class ContactCreationTests extends TestBase {
     public void testContactCreation() throws Exception {
         app.contact().returnToHomePage();
         Contacts before = app.contact().all();
-        ContactData contact = new ContactData().withFirstName("John").withLastName("Doe").withMobile("88001234567")
+        ContactData contact = new ContactData().withFirstName("John").withLastName("Doe").withMobilePhone("88001234567")
                 .withEmail("johndoe@test.com").withGroup("test1");
         app.contact().create(contact, true);
         app.contact().returnToHomePage();
@@ -37,7 +37,7 @@ public class ContactCreationTests extends TestBase {
     public void testBadContactCreation() throws Exception {
         app.contact().returnToHomePage();
         Contacts before = app.contact().all();
-        ContactData contact = new ContactData().withFirstName("John'").withLastName("Doe'").withMobile("88001234567")
+        ContactData contact = new ContactData().withFirstName("John'").withLastName("Doe'").withMobilePhone("88001234567")
                 .withEmail("johndoe@test.com").withGroup("test1");
         app.contact().create(contact, true);
         app.contact().returnToHomePage();
