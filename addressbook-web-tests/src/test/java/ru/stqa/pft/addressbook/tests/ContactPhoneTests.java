@@ -19,8 +19,8 @@ public class ContactPhoneTests extends TestBase {
     public void ensurePreconditionContact() {
         if (app.contact().all().size() == 0) {
             app.contact().returnToHomePage();
-            ContactData contact = new ContactData().withFirstName("111").withLastName("222").withMobilePhone("222")
-                    .withEmail("111.222@").withGroup("test1");
+            ContactData contact = new ContactData().withFirstName("111").withLastName("222").withHomePhone("111")
+                    .withMobilePhone("222").withWorkPhone("333").withEmail("111.222@").withGroup("test1");
             app.contact().create(contact, true);
             app.contact().returnToHomePage();
         }
