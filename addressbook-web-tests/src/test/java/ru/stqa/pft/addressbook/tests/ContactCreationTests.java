@@ -19,7 +19,7 @@ public class ContactCreationTests extends TestBase {
         }
     }
 
-    @Test(enabled = true)
+    @Test(enabled = false)
     public void testContactCreation() throws Exception {
         app.contact().returnToHomePage();
         Contacts before = app.contact().all();

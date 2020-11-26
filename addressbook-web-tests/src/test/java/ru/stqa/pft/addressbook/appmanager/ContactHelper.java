@@ -8,7 +8,9 @@ import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class ContactHelper extends HelperBase {
 
@@ -41,7 +43,7 @@ public class ContactHelper extends HelperBase {
     }
 
 
-    public ContactData infoFromEditForm(ContactData contact) {
+    public ContactData infoFromEditForm2(ContactData contact) {
         initContactModificationById(contact.getId());
         String firstname = wd.findElement(By.name("firstname")).getAttribute("value");
         String lastname = wd.findElement(By.name("lastname")).getAttribute("value");
@@ -67,7 +69,8 @@ public class ContactHelper extends HelperBase {
     }
 
     public void submitContactModification() {
-        click(By.xpath("(//input[@name='update'])[2]"));
+//        click(By.xpath("(//input[@name='update'])[2]"));
+        click(By.name("update")); //заменил
     }
 
     public void selectContactById(int id) {
@@ -78,6 +81,35 @@ public class ContactHelper extends HelperBase {
         click(By.xpath("//input[@value='Delete']"));
         wd.switchTo().alert().accept();
     }
+
+
+
+    public Set<ContactData> all2() {
+        Set<ContactData> contacts = new HashSet<ContactData>();
+        List<WebElement> rows = wd.findElements(By.name("entry"));
+        for (WebElement row : rows) {
+            List<WebElement> cells = row.findElements(By.tagName("td"));
+            int id = Integer.parseInt(cells.get(0).findElement(By.tagName("input")).getAttribute("value"));
+            String lastname = cells.get(1).getText();
+            String firstname = cells.get(2).getText();
+            String[] phones = cells.get(5).getText().split("\n");
+            contacts.add(new ContactData().withId(id).withFirstName(firstname).withLastName(lastname)
+                    .withHomePhone(phones[0]).withMobilePhone(phones[1]).withWorkPhone(phones[2]));
+        }
+        return contacts;
+    }
+
+    public ContactData infoFromEditForm(ContactData contact) {
+        initContactModificationById(contact.getId());
+        String firstname = wd.findElement(By.name("firstname")).getAttribute("value");
+        String lastname = wd.findElement(By.name("lastname")).getAttribute("value");
+        String home = wd.findElement(By.name("home")).getAttribute("value");
+        String mobile = wd.findElement(By.name("mobile")).getAttribute("value");
+        String work = wd.findElement(By.name("work")).getAttribute("value");
+        return new ContactData().withId(contact.getId()).withFirstName(firstname).withLastName(lastname)
+                .withHomePhone(home).withMobilePhone(mobile).withWorkPhone(work);
+    }
+
 
 
 
