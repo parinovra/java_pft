@@ -45,6 +45,11 @@ public class ContactData {
         return this;
     }
 
+    public ContactData withAllPhones(String allPhones) {
+        this.workPhone = allPhones;
+        return this;
+    }
+
     public ContactData withEmail(String email) {
         this.email = email;
         return this;
