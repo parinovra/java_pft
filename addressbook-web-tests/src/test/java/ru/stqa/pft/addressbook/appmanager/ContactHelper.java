@@ -23,9 +23,7 @@ public class ContactHelper extends HelperBase {
     public void fillContactForm(ContactData contactData, boolean creation) {
         type(By.name("firstname"), contactData.getFirstName());
         type(By.name("lastname"), contactData.getLastName());
-        type(By.name("home"), contactData.getHomePhone()); //добавил
-        type(By.name("mobile"), contactData.getMobilePhone());
-        type(By.name("work"), contactData.getWorkPhone()); //добавил
+        type(By.name("mobile"), contactData.getMobile());
         type(By.name("email"), contactData.getEmail());
 
         if (creation) {
@@ -39,6 +37,7 @@ public class ContactHelper extends HelperBase {
         click(By.xpath("(//input[@name='submit'])[2]"));
     }
 
+<<<<<<< HEAD
 
     public void initContactModificationById(int id) {
         //wd.findElement(By.xpath("//a[@href='edit.php?id=" + id + "']")).click(); //было
@@ -51,6 +50,10 @@ public class ContactHelper extends HelperBase {
 //        wd.findElement(By.xpath(String.format("//input[@value='%s']/../../td[8]/a", id))).click();
 //        wd.findElement(By.xpath(String.format("//tr[.//input[@value='%s']]/td[8]/a", id))).click();
         wd.findElement(By.cssSelector(String.format("a[href='edit.php?id=%s']", id))).click();
+=======
+    public void initContactModificationById(int id) {
+        wd.findElement(By.xpath("//a[@href='edit.php?id=" + id + "']")).click();
+>>>>>>> parent of 33d47d4... 5.9. Способы построения сложных локаторов
     }
 
     public void submitContactModification() {
