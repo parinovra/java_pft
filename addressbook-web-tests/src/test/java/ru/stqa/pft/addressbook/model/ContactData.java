@@ -30,11 +30,14 @@ public class ContactData {
 
     public ContactData withMobile(String mobile) {
         this.mobile = mobile;
+<<<<<<< HEAD
         return this;
     }
 
     public ContactData withAllPhones(String allPhones) {
         this.workPhone = allPhones;
+=======
+>>>>>>> parent of 33d47d4... 5.9. Способы построения сложных локаторов
         return this;
     }
 

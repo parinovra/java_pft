@@ -38,6 +38,7 @@ public class ContactHelper extends HelperBase {
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
     public void initContactModificationById(int id) {
         //wd.findElement(By.xpath("//a[@href='edit.php?id=" + id + "']")).click(); //было
@@ -50,6 +51,10 @@ public class ContactHelper extends HelperBase {
 //        wd.findElement(By.xpath(String.format("//input[@value='%s']/../../td[8]/a", id))).click();
 //        wd.findElement(By.xpath(String.format("//tr[.//input[@value='%s']]/td[8]/a", id))).click();
         wd.findElement(By.cssSelector(String.format("a[href='edit.php?id=%s']", id))).click();
+=======
+    public void initContactModificationById(int id) {
+        wd.findElement(By.xpath("//a[@href='edit.php?id=" + id + "']")).click();
+>>>>>>> parent of 33d47d4... 5.9. Способы построения сложных локаторов
 =======
     public void initContactModificationById(int id) {
         wd.findElement(By.xpath("//a[@href='edit.php?id=" + id + "']")).click();
