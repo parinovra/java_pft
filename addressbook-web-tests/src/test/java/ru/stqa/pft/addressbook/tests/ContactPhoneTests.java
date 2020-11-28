@@ -5,6 +5,9 @@ import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.GroupData;
 
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
+
 public class ContactPhoneTests extends TestBase {
 
     @BeforeMethod
@@ -28,5 +31,11 @@ public class ContactPhoneTests extends TestBase {
         app.contact().returnToHomePage();
         ContactData contact = app.contact().all().iterator().next();
         ContactData contactInfoFromEditForm = app.contact().infoFromEditForm(contact);
+
+        assertThat(contact.getHome(), equalTo(contactInfoFromEditForm.getHome()));
+        assertThat(contact.getMobile(), equalTo(contactInfoFromEditForm.getMobile()));
+        assertThat(contact.getWork(), equalTo(contactInfoFromEditForm.getWork()));
+
+//        assertThat(contact.getEmail(), equalTo(contactInfoFromEditForm.getEmail()));
     }
 }

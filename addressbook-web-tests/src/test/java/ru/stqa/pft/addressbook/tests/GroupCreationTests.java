@@ -9,7 +9,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 public class GroupCreationTests extends TestBase {
 
-    @Test(enabled = true)
+    @Test(enabled = false)
     public void testGroupCreation() throws Exception {
         app.goTo().groupPage();
         Groups before = app.group().all();
@@ -21,7 +21,7 @@ public class GroupCreationTests extends TestBase {
                 before.withAdded(group.withId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt()))));
     }
 
-    @Test(enabled = true)
+    @Test(enabled = false)
     public void testBadGroupCreation() throws Exception {
         app.goTo().groupPage();
         Groups before = app.group().all();
