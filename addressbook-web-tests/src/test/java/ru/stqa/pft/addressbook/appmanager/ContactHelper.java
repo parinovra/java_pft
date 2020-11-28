@@ -126,14 +126,14 @@ public class ContactHelper extends HelperBase {
     public void initContactModificationById(int id) {
 //        wd.findElement(By.xpath("//a[@href='edit.php?id=" + id + "']")).click(); //было
 
-        WebElement checkbox = wd.findElement(By.cssSelector(String.format("input[value='%s']", id)));
-        WebElement row = checkbox.findElement(By.xpath("./../.."));
-        List<WebElement> cells = row.findElements(By.tagName("td"));
-        cells.get(7).findElement(By.tagName("a")).click();
+//        WebElement checkbox = wd.findElement(By.cssSelector(String.format("input[value='%s']", id))); //находим чекбокс checkbox
+//        WebElement row = checkbox.findElement(By.xpath("./../..")); //нашли нужную строку row: поиск относительно чекбокса по xpath, поднялись на два уровня вверх (к ячейке таблицы, а потом к строке таблицы)
+//        List<WebElement> cells = row.findElements(By.tagName("td")); //ищем ячейку с карандашом
+//        cells.get(7).findElement(By.tagName("a")).click(); //среди ячеек взяли по номеру нужную (8-й столбец, если считать с нуля, то 7-й)
 
+//        четрые строки выше заменяет любая одна из ниже расположенных:
 //        wd.findElement(By.xpath(String.format("//input[@value='%s']/../../td[8]/a", id))).click();
 //        wd.findElement(By.xpath(String.format("//tr[.input[@value='%s']]/td[8]/a", id))).click();
-//        wd.findElement(By.cssSelector(String.format("a[href='edit.php?id=%s']", id))).click();
+        wd.findElement(By.cssSelector(String.format("a[href='edit.php?id=%s']", id))).click();
     }
-
 }
