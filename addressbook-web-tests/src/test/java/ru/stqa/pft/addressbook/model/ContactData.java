@@ -7,7 +7,9 @@ public class ContactData {
     private String home;
     private String mobile;
     private String work;
+    private String allPhones;
     private String email;
+//    private String allEmails;
     private String group;
 
     public int getId() {
@@ -44,10 +46,28 @@ public class ContactData {
         return this;
     }
 
+    public String getAllPhones() {
+        return allPhones;
+    }
+
+    public ContactData withAllPhones(String allPhones) {
+        this.allPhones = allPhones;
+        return this;
+    }
+
     public ContactData withEmail(String email) {
         this.email = email;
         return this;
     }
+
+//        public String getAllEmails() {
+//        return allEmails;
+//    }
+//
+//    public ContactData withAllEmails(String allEmails) {
+//        this.allEmails = allEmails;
+//        return this;
+//    }
 
     public ContactData withGroup(String group) {
         this.group = group;

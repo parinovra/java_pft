@@ -106,11 +106,11 @@ public class ContactHelper extends HelperBase {
             String lastName = element.findElement(By.xpath("td[2]")).getText();
             String firstName = element.findElement(By.xpath("td[3]")).getText();
             String email = element.findElement(By.xpath("td[5]")).getText();
-            String[] phones = element.findElement(By.xpath("td[6]")).getText().split("\n");
+            String allPhones = element.findElement(By.xpath("td[6]")).getText();
 
             int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
             contactCache.add(new ContactData().withId(id).withFirstName(firstName).withLastName(lastName)
-                    .withHome(phones[0]).withMobile(phones[1]).withWork(phones[2]).withEmail(email));
+                    .withAllPhones(allPhones).withEmail(email));
         }
         return new Contacts(contactCache);
     }
