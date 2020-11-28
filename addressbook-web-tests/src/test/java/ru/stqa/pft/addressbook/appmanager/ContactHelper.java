@@ -37,28 +37,8 @@ public class ContactHelper extends HelperBase {
         click(By.xpath("(//input[@name='submit'])[2]"));
     }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-    public void initContactModificationById(int id) {
-        //wd.findElement(By.xpath("//a[@href='edit.php?id=" + id + "']")).click(); //было
-
-//        WebElement checkbox = wd.findElement(By.cssSelector(String.format("input[value='%s']", id)));
-//        WebElement row = checkbox.findElement(By.xpath("./../.."));
-//        List<WebElement> cells = row.findElements(By.tagName("td"));
-//        cells.get(7).findElement(By.tagName("a")).click();
-
-//        wd.findElement(By.xpath(String.format("//input[@value='%s']/../../td[8]/a", id))).click();
-//        wd.findElement(By.xpath(String.format("//tr[.//input[@value='%s']]/td[8]/a", id))).click();
-        wd.findElement(By.cssSelector(String.format("a[href='edit.php?id=%s']", id))).click();
-=======
     public void initContactModificationById(int id) {
         wd.findElement(By.xpath("//a[@href='edit.php?id=" + id + "']")).click();
->>>>>>> parent of 33d47d4... 5.9. Способы построения сложных локаторов
-=======
-    public void initContactModificationById(int id) {
-        wd.findElement(By.xpath("//a[@href='edit.php?id=" + id + "']")).click();
->>>>>>> parent of 33d47d4... 5.9. Способы построения сложных локаторов
     }
 
     public void submitContactModification() {
