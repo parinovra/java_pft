@@ -14,7 +14,7 @@ public class ContactPhoneTests extends TestBase {
             app.goTo().groupPage();
             app.group().create(new GroupData().withName("test1"));
         }
-        app.contact().returnToHomePage(); //переписал предусловия, вроде работают адекватно - затестить и зашерить на другие тесты
+        app.contact().returnToHomePage();
 
         if (app.contact().all().size() == 0) {
             app.contact().create(new ContactData().withFirstName("111").withLastName("222").withHome("111")
@@ -24,9 +24,9 @@ public class ContactPhoneTests extends TestBase {
 
     @Test
     public void testContactPhones() {
-//        app.goTo().gotoHomepage(); //в лекции; у меня в ApplicationManager такого перехода нет, потому заюзаю строчку ниже
+//        app.goTo().gotoHomepage(); //в лекции, а у меня в ApplicationManager такого перехода нет, потому заюзаю строчку ниже
         app.contact().returnToHomePage();
         ContactData contact = app.contact().all().iterator().next();
-//        ContactData contactInfoFromEditForm = app.contact().infoFromEditForm(contact);
+        ContactData contactInfoFromEditForm = app.contact().infoFromEditForm(contact);
     }
 }
