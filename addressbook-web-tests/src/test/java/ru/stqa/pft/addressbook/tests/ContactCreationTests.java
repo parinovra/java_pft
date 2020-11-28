@@ -13,17 +13,19 @@ public class ContactCreationTests extends TestBase {
 
     @BeforeMethod
     public void ensurePreconditions() {
+        app.goTo().groupPage();
         if (app.group().all().size() == 0) {
             app.goTo().groupPage();
             app.group().create(new GroupData().withName("test1"));
         }
+        app.contact().returnToHomePage();
     }
 
     @Test(enabled = true)
     public void testContactCreation() throws Exception {
         app.contact().returnToHomePage();
         Contacts before = app.contact().all();
-        ContactData contact = new ContactData().withFirstName("John").withLastName("Doe").withMobile("88001234567")
+        ContactData contact = new ContactData().withFirstName("John").withLastName("Doe").withMobile("89001234567")
                 .withEmail("johndoe@test.com").withGroup("test1");
         app.contact().create(contact, true);
         app.contact().returnToHomePage();

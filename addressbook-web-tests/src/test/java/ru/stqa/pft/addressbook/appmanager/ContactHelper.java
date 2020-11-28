@@ -24,7 +24,9 @@ public class ContactHelper extends HelperBase {
     public void fillContactForm(ContactData contactData, boolean creation) {
         type(By.name("firstname"), contactData.getFirstName());
         type(By.name("lastname"), contactData.getLastName());
+        type(By.name("home"), contactData.getHome()); //добавил
         type(By.name("mobile"), contactData.getMobile());
+        type(By.name("work"), contactData.getWork()); //добавил
         type(By.name("email"), contactData.getEmail());
 
         if (creation) {
@@ -112,4 +114,8 @@ public class ContactHelper extends HelperBase {
         }
         return new Contacts(contactCache);
     }
+
+//    public ContactData infoFromEditForm(ContactData contact) {
+//        125;
+//    }
 }
