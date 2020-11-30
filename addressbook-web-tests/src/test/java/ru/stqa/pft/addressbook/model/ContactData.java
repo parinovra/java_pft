@@ -4,12 +4,15 @@ public class ContactData {
     private int id = Integer.MAX_VALUE;
     private String firstName;
     private String lastName;
+    private String address;
     private String home;
     private String mobile;
     private String work;
     private String allPhones;
     private String email;
-//    private String allEmails;
+    private String email2;
+    private String email3;
+    private String allEmails;
     private String group;
 
     public int getId() {
@@ -31,6 +34,11 @@ public class ContactData {
         return this;
     }
 
+    public ContactData withAddress(String address) {
+        this.address = address;
+        return this;
+    }
+
     public ContactData withHome(String home) {
         this.home = home;
         return this;
@@ -46,6 +54,21 @@ public class ContactData {
         return this;
     }
 
+    public ContactData withEmail(String email) {
+        this.email = email;
+        return this;
+    }
+
+    public ContactData withEmail2(String email2) {
+        this.email2 = email2;
+        return this;
+    }
+
+    public ContactData withEmail3(String email3) {
+        this.email3 = email3;
+        return this;
+    }
+
     public String getAllPhones() {
         return allPhones;
     }
@@ -55,24 +78,21 @@ public class ContactData {
         return this;
     }
 
-    public ContactData withEmail(String email) {
-        this.email = email;
-        return this;
+        public String getAllEmails() {
+        return allEmails;
     }
 
-//        public String getAllEmails() {
-//        return allEmails;
-//    }
-//
-//    public ContactData withAllEmails(String allEmails) {
-//        this.allEmails = allEmails;
-//        return this;
-//    }
+    public ContactData withAllEmails(String allEmails) {
+        this.allEmails = allEmails;
+        return this;
+    }
 
     public ContactData withGroup(String group) {
         this.group = group;
         return this;
     }
+
+
 
     public String getFirstName() {
         return firstName;
@@ -80,6 +100,10 @@ public class ContactData {
 
     public String getLastName() {
         return lastName;
+    }
+
+    public String getAddress() {
+        return address;
     }
 
     public String getHome() {
@@ -96,6 +120,14 @@ public class ContactData {
 
     public String getEmail() {
         return email;
+    }
+
+    public String getEmail2() {
+        return email2;
+    }
+
+    public String getEmail3() {
+        return email3;
     }
 
     public String getGroup() {

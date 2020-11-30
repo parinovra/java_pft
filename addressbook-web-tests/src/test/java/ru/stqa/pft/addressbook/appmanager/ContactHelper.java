@@ -24,10 +24,12 @@ public class ContactHelper extends HelperBase {
     public void fillContactForm(ContactData contactData, boolean creation) {
         type(By.name("firstname"), contactData.getFirstName());
         type(By.name("lastname"), contactData.getLastName());
-        type(By.name("home"), contactData.getHome()); //добавил
+        type(By.name("home"), contactData.getHome());
         type(By.name("mobile"), contactData.getMobile());
-        type(By.name("work"), contactData.getWork()); //добавил
+        type(By.name("work"), contactData.getWork());
         type(By.name("email"), contactData.getEmail());
+        type(By.name("email2"), contactData.getEmail2()); //добавил
+        type(By.name("email3"), contactData.getEmail3()); //добавил
 
         if (creation) {
             new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
@@ -105,12 +107,13 @@ public class ContactHelper extends HelperBase {
         for (WebElement element : elements) {
             String lastName = element.findElement(By.xpath("td[2]")).getText();
             String firstName = element.findElement(By.xpath("td[3]")).getText();
-            String email = element.findElement(By.xpath("td[5]")).getText();
+            String address = element.findElement(By.xpath("td[4]")).getText();
+            String allEmails = element.findElement(By.xpath("td[5]")).getText();
             String allPhones = element.findElement(By.xpath("td[6]")).getText();
 
             int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
             contactCache.add(new ContactData().withId(id).withFirstName(firstName).withLastName(lastName)
-                    .withAllPhones(allPhones).withEmail(email));
+                    .withAddress(address).withAllPhones(allPhones).withAllEmails(allEmails));
         }
         return new Contacts(contactCache);
     }
@@ -119,11 +122,16 @@ public class ContactHelper extends HelperBase {
         initContactModificationById(contact.getId());
         String firstname = wd.findElement(By.name("firstname")).getAttribute("value");
         String lastname = wd.findElement(By.name("lastname")).getAttribute("value");
+        String address = wd.findElement(By.name("address")).getAttribute("value"); //подобрать локатор cols - ?
         String home = wd.findElement(By.name("home")).getAttribute("value");
         String mobile = wd.findElement(By.name("mobile")).getAttribute("value");
         String work = wd.findElement(By.name("work")).getAttribute("value");
-        return new ContactData().withId(contact.getId()).withFirstName(firstname).withLastName(lastname).withHome(home)
-                .withMobile(mobile).withWork(work); //что-то тут параметры на contact.getFirstName() и т. д. не перепилены
+        String email = wd.findElement(By.name("email")).getAttribute("value");
+        String email2 = wd.findElement(By.name("email2")).getAttribute("value");
+        String email3 = wd.findElement(By.name("email3")).getAttribute("value");
+        return new ContactData().withId(contact.getId()).withFirstName(firstname).withLastName(lastname)
+                .withAddress(address).withHome(home).withMobile(mobile).withWork(work).withEmail(email)
+                .withEmail2(email2).withEmail3(email3);
     }
 
     public void initContactModificationById(int id) {
