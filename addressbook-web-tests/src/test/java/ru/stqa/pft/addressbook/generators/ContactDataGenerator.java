@@ -52,11 +52,11 @@ public class ContactDataGenerator {
         List<ContactData> contacts = new ArrayList<ContactData>();
         for (int i = 0; i < count; i++) {
             contacts.add(new ContactData().withFirstName(String.format("Петя%s", i))
-                    .withLastName(String.format("Петров%s", i)).withAddress(String.format("Москва%s", i))
+                    .withLastName(String.format("Петров%s", i)).withAddress(String.format("Москва-%s", i))
                     .withHome(String.format("8495012345%s", i)).withMobile(String.format("890099999%s", i))
-                    .withWork(String.format("849954321%s", i)).withEmail(String.format("email1.%s@test.com", i))
-                    .withEmail2(String.format("email2.%s@test.com", i))
-                    .withEmail3(String.format("email3.%s@test.com", i)));
+                    .withWork(String.format("849954321%s", i)).withEmail(String.format("email1.%s@test1.com", i))
+                    .withEmail2(String.format("email2.%s@test2.com", i))
+                    .withEmail3(String.format("email3.%s@test3.com", i)));
         }
         return contacts;
     }
