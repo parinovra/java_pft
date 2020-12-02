@@ -29,24 +29,26 @@ public class ContactCreationTests extends TestBase {
 
     @DataProvider
     public Iterator<Object[]> validContacts() {
+        File photo = new File("src/test/resources/stru.png");
         List<Object[]> list = new ArrayList<Object[]>();
-        list.add(new Object[]{"Сидор1", "Сидоров2", "Питер-1", "84950123456", "89009999999", "84996543210",
-                "email1@test1.com", "email2@test2.com", "email3@test2.com"});
-        list.add(new Object[]{"Сидор2", "Сидоров2", "Питер-2", "84950123456", "89009999999", "84996543210",
-                "email1@test1.com", "email2@test2.com", "email3@test2.com"});
-        list.add(new Object[]{"Сидор3", "Сидоров2", "Питер-3", "84950123456", "89009999999", "84996543210",
-                "email1@test1.com", "email2@test2.com", "email3@test2.com"});
+        list.add(new Object[] {new ContactData().withFirstName("Сидор1").withLastName("Сидоров1").withAddress("Питер-1")
+                .withHome("84950123456").withMobile("89009999999").withWork("84996543210").withEmail("email1@test1.com")
+                .withEmail2("email2@test2.com").withEmail3("email3@test2.com").withGroup("test1").withPhoto(photo)});
+        list.add(new Object[] {new ContactData().withFirstName("Сидор2").withLastName("Сидоров2").withAddress("Питер-2")
+                .withHome("84950123456").withMobile("89009999999").withWork("84996543210").withEmail("email1@test1.com")
+                .withEmail2("email2@test2.com").withEmail3("email3@test3.com").withGroup("test1").withPhoto(photo)});
+        list.add(new Object[] {new ContactData().withFirstName("Сидор3").withLastName("Сидоров3").withAddress("Питер-3")
+                .withHome("84950123456").withMobile("89009999999").withWork("84996543210").withEmail("email1@test1.com")
+                .withEmail2("email2@test2.com").withEmail3("email3@test3.com").withGroup("test1").withPhoto(photo)});
         return list.iterator();
     }
 
     //    @Test(enabled = true)
     @Test(dataProvider = "validContacts")
-    public void testContactCreation(String firstName, String lastName, String address, String home, String mobile,
-                                    String work, String email, String email2, String email3) throws Exception {
-        File photo = new File("src/test/resources/stru.png");
-        ContactData contact = new ContactData().withFirstName(firstName).withLastName(lastName).withAddress(address).withHome(home)
-                .withMobile(mobile).withWork(work).withEmail(email).withEmail2(email2).withEmail3(email3)
-                .withGroup("test1").withPhoto(photo);
+    public void testContactCreation(ContactData contact) throws Exception {
+//        ContactData contact = new ContactData().withFirstName(firstName).withLastName(lastName).withAddress(address).withHome(home)
+//                .withMobile(mobile).withWork(work).withEmail(email).withEmail2(email2).withEmail3(email3)
+//                .withGroup("test1").withPhoto(photo);
 /*
             ContactData contact = new ContactData().withFirstName("John").withLastName("Doe").withMobile("89001234567")
                     .withEmail("johndoe@test.com").withGroup("test1").withPhoto(photo); //здесь подбросить переменную name
