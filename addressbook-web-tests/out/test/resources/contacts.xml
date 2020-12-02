@@ -1,0 +1,35 @@
+<list>
+  <contact>
+    <firstName>Петя0</firstName>
+    <lastName>Петров0</lastName>
+    <address>Москва-0</address>
+    <home>84950123450</home>
+    <mobile>8900999990</mobile>
+    <work>8499543210</work>
+    <email>email1.0@test1.com</email>
+    <email2>email2.0@test2.com</email2>
+    <email3>email3.0@test3.com</email3>
+  </contact>
+  <contact>
+    <firstName>Петя1</firstName>
+    <lastName>Петров1</lastName>
+    <address>Москва-1</address>
+    <home>84950123451</home>
+    <mobile>8900999991</mobile>
+    <work>8499543211</work>
+    <email>email1.1@test1.com</email>
+    <email2>email2.1@test2.com</email2>
+    <email3>email3.1@test3.com</email3>
+  </contact>
+  <contact>
+    <firstName>Петя2</firstName>
+    <lastName>Петров2</lastName>
+    <address>Москва-2</address>
+    <home>84950123452</home>
+    <mobile>8900999992</mobile>
+    <work>8499543212</work>
+    <email>email1.2@test1.com</email>
+    <email2>email2.2@test2.com</email2>
+    <email3>email3.2@test3.com</email3>
+  </contact>
+</list>
