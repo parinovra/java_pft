@@ -9,6 +9,7 @@
     <email>email1.0@test1.com</email>
     <email2>email2.0@test2.com</email2>
     <email3>email3.0@test3.com</email3>
+    <group>test1</group>
   </contact>
   <contact>
     <firstName>Петя1</firstName>
@@ -20,6 +21,7 @@
     <email>email1.1@test1.com</email>
     <email2>email2.1@test2.com</email2>
     <email3>email3.1@test3.com</email3>
+    <group>test1</group>
   </contact>
   <contact>
     <firstName>Петя2</firstName>
@@ -31,5 +33,6 @@
     <email>email1.2@test1.com</email>
     <email2>email2.2@test2.com</email2>
     <email3>email3.2@test3.com</email3>
+    <group>test1</group>
   </contact>
 </list>
