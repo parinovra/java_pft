@@ -1,0 +1,38 @@
+[
+  {
+    "firstName": "Петя0",
+    "lastName": "Петров0",
+    "address": "Москва-0",
+    "home": "84950123450",
+    "mobile": "8900999990",
+    "work": "8499543210",
+    "email": "email1.0@test1.com",
+    "email2": "email2.0@test2.com",
+    "email3": "email3.0@test3.com",
+    "group": "test1"
+  },
+  {
+    "firstName": "Петя1",
+    "lastName": "Петров1",
+    "address": "Москва-1",
+    "home": "84950123451",
+    "mobile": "8900999991",
+    "work": "8499543211",
+    "email": "email1.1@test1.com",
+    "email2": "email2.1@test2.com",
+    "email3": "email3.1@test3.com",
+    "group": "test1"
+  },
+  {
+    "firstName": "Петя2",
+    "lastName": "Петров2",
+    "address": "Москва-2",
+    "home": "84950123452",
+    "mobile": "8900999992",
+    "work": "8499543212",
+    "email": "email1.2@test1.com",
+    "email2": "email2.2@test2.com",
+    "email3": "email3.2@test3.com",
+    "group": "test1"
+  }
+]

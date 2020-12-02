@@ -3,6 +3,8 @@ package ru.stqa.pft.addressbook.generators;
 import com.beust.jcommander.JCommander;
 import com.beust.jcommander.Parameter;
 import com.beust.jcommander.ParameterException;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.thoughtworks.xstream.XStream;
 import ru.stqa.pft.addressbook.model.ContactData;
 
@@ -42,9 +44,22 @@ public class ContactDataGenerator {
             saveAsCsv(contacts, new File(file));
         } else if (format.equals("xml")) {
             saveAsXml(contacts, new File(file));
+        } else if (format.equals("json")) {
+            saveAsJson(contacts, new File(file));
         } else {
             System.out.println("Unrecognized format " + format);
         }
+    }
+
+    private void saveAsCsv(List<ContactData> contacts, File file) throws IOException {
+        System.out.println(new File(".").getAbsolutePath());
+        Writer writer = new FileWriter(file);
+        for (ContactData contact : contacts) {
+            writer.write(String.format("%s;%s;%s;%s;%s;%s;%s;%s;%s;%s\n", contact.getFirstName(), contact.getLastName(),
+                    contact.getAddress(), contact.getHome(), contact.getMobile(), contact.getWork(),
+                    contact.getEmail(), contact.getEmail2(), contact.getEmail3(), contact.getGroup())); //группу добавить?
+        }
+        writer.close();
     }
 
     private void saveAsXml(List<ContactData> contacts, File file) throws IOException {
@@ -56,14 +71,11 @@ public class ContactDataGenerator {
         writer.close();
     }
 
-    private void saveAsCsv(List<ContactData> contacts, File file) throws IOException {
-        System.out.println(new File(".").getAbsolutePath());
+    private void saveAsJson(List<ContactData> contacts, File file) throws IOException {
+        Gson gson = new GsonBuilder().setPrettyPrinting().excludeFieldsWithoutExposeAnnotation().create();
+        String json = gson.toJson(contacts);
         Writer writer = new FileWriter(file);
-        for (ContactData contact : contacts) {
-            writer.write(String.format("%s;%s;%s;%s;%s;%s;%s;%s;%s;%s\n", contact.getFirstName(), contact.getLastName(),
-                    contact.getAddress(), contact.getHome(), contact.getMobile(), contact.getWork(),
-                    contact.getEmail(), contact.getEmail2(), contact.getEmail3(), contact.getGroup())); //группу добавить?
-        }
+        writer.write(json);
         writer.close();
     }
 

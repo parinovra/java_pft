@@ -1,5 +1,7 @@
 package ru.stqa.pft.addressbook.tests;
 
+import com.google.common.reflect.TypeToken;
+import com.google.gson.Gson;
 import com.thoughtworks.xstream.XStream;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
@@ -32,18 +34,13 @@ public class ContactCreationTests extends TestBase {
     }
 
     @DataProvider
-    public Iterator<Object[]> validContacts() throws IOException {
+    public Iterator<Object[]> validContactsFromXml() throws IOException {
         File photo = new File("src/test/resources/stru.png");
         BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/contacts.xml")));
         String xml = "";
         String line = reader.readLine();
         while (line != null) {
             xml += line;
-//            String[] split = line.split(";");
-//            list.add(new Object[] {new ContactData().withFirstName(split[0]).withLastName(split[1])
-//                    .withAddress(split[2]).withHome(split[3]).withMobile(split[4]).withWork(split[5])
-//                    .withEmail(split[6]).withEmail2(split[7]).withEmail3(split[8]).withGroup("test1").withPhoto(photo)
-//            });
             line = reader.readLine();
         }
         XStream xstream = new XStream();
@@ -52,8 +49,23 @@ public class ContactCreationTests extends TestBase {
         return contacts.stream().map((c) -> new Object[] {c}).collect(Collectors.toList()).iterator();
     }
 
+    @DataProvider
+    public Iterator<Object[]> validContactsFromJson() throws IOException {
+        File photo = new File("src/test/resources/stru.png");
+        BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/contacts.json")));
+        String json = "";
+        String line = reader.readLine();
+        while (line != null) {
+            json += line;
+            line = reader.readLine();
+        }
+        Gson gson = new Gson();
+        List<ContactData> contacts = gson.fromJson(json, new TypeToken<List<ContactData>>(){}.getType()); //List<ContactData>.class
+        return contacts.stream().map((c) -> new Object[] {c}).collect(Collectors.toList()).iterator();
+    }
+
     //    @Test(enabled = true)
-    @Test(dataProvider = "validContacts")
+    @Test(dataProvider = "validContactsFromJson")
     public void testContactCreation(ContactData contact) throws Exception {
         app.contact().returnToHomePage();
         Contacts before = app.contact().all();
