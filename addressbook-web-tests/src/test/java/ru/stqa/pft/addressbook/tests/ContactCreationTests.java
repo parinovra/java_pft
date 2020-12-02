@@ -7,7 +7,7 @@ import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
 import ru.stqa.pft.addressbook.model.GroupData;
 
-import java.io.File;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -28,31 +28,25 @@ public class ContactCreationTests extends TestBase {
     }
 
     @DataProvider
-    public Iterator<Object[]> validContacts() {
+    public Iterator<Object[]> validContacts() throws IOException {
         File photo = new File("src/test/resources/stru.png");
         List<Object[]> list = new ArrayList<Object[]>();
-        list.add(new Object[] {new ContactData().withFirstName("Сидор1").withLastName("Сидоров1").withAddress("Питер-1")
-                .withHome("84950123456").withMobile("89009999999").withWork("84996543210").withEmail("email1@test1.com")
-                .withEmail2("email2@test2.com").withEmail3("email3@test2.com").withGroup("test1").withPhoto(photo)});
-        list.add(new Object[] {new ContactData().withFirstName("Сидор2").withLastName("Сидоров2").withAddress("Питер-2")
-                .withHome("84950123456").withMobile("89009999999").withWork("84996543210").withEmail("email1@test1.com")
-                .withEmail2("email2@test2.com").withEmail3("email3@test3.com").withGroup("test1").withPhoto(photo)});
-        list.add(new Object[] {new ContactData().withFirstName("Сидор3").withLastName("Сидоров3").withAddress("Питер-3")
-                .withHome("84950123456").withMobile("89009999999").withWork("84996543210").withEmail("email1@test1.com")
-                .withEmail2("email2@test2.com").withEmail3("email3@test3.com").withGroup("test1").withPhoto(photo)});
+        BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/contacts.csv")));
+        String line = reader.readLine();
+        while (line != null) {
+            String[] split = line.split(";");
+            list.add(new Object[] {new ContactData().withFirstName(split[0]).withLastName(split[1])
+                    .withAddress(split[2]).withHome(split[3]).withMobile(split[4]).withWork(split[5])
+                    .withEmail(split[6]).withEmail2(split[7]).withEmail3(split[8]).withGroup("test1").withPhoto(photo)
+            });
+            line = reader.readLine();
+        }
         return list.iterator();
     }
 
     //    @Test(enabled = true)
     @Test(dataProvider = "validContacts")
     public void testContactCreation(ContactData contact) throws Exception {
-//        ContactData contact = new ContactData().withFirstName(firstName).withLastName(lastName).withAddress(address).withHome(home)
-//                .withMobile(mobile).withWork(work).withEmail(email).withEmail2(email2).withEmail3(email3)
-//                .withGroup("test1").withPhoto(photo);
-/*
-            ContactData contact = new ContactData().withFirstName("John").withLastName("Doe").withMobile("89001234567")
-                    .withEmail("johndoe@test.com").withGroup("test1").withPhoto(photo); //здесь подбросить переменную name
- */
         app.contact().returnToHomePage();
         Contacts before = app.contact().all();
         app.contact().create(contact, true);
