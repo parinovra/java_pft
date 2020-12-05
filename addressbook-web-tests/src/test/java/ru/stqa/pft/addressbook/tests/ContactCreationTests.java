@@ -27,12 +27,11 @@ public class ContactCreationTests extends TestBase {
 
     @BeforeMethod(enabled = false)
     public void ensurePreconditions() {
-        app.goTo().groupPage();
-        if (app.group().all().size() == 0) {
+        if (app.db().groups().size() == 0) {
             app.goTo().groupPage();
             app.group().create(new GroupData().withName("test1"));
+            app.contact().returnToHomePage();
         }
-        app.contact().returnToHomePage();
     }
 
     @DataProvider
@@ -72,25 +71,25 @@ public class ContactCreationTests extends TestBase {
     @Test(dataProvider = "validContactsFromJson")
     public void testContactCreation(ContactData contact) throws Exception {
         app.contact().returnToHomePage();
-        Contacts before = app.contact().all();
+        Contacts before = app.db().contacts();
         app.contact().create(contact, true);
         app.contact().returnToHomePage();
         assertThat(app.contact().count(), equalTo(before.size() + 1));
-        Contacts after = app.contact().all();
+        Contacts after = app.db().contacts();
         assertThat(after, equalTo(
                 before.withAdded(contact.withId(after.stream().mapToInt((c) -> c.getId()).max().getAsInt()))));
     }
 
-    @Test(enabled = false)
+    @Test(enabled = true)
     public void testBadContactCreation() throws Exception {
         app.contact().returnToHomePage();
-        Contacts before = app.contact().all();
+        Contacts before = app.db().contacts();
         ContactData contact = new ContactData().withFirstName("John'").withLastName("Doe'").withMobile("88001234567")
                 .withEmail("johndoe@test.com").withGroup("test1");
         app.contact().create(contact, true);
         app.contact().returnToHomePage();
         assertThat(app.contact().count(), equalTo(before.size()));
-        Contacts after = app.contact().all();
+        Contacts after = app.db().contacts();
         assertThat(after, equalTo(before));
     }
 
