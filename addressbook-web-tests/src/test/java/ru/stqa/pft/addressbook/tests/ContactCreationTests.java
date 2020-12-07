@@ -80,7 +80,7 @@ public class ContactCreationTests extends TestBase {
                 before.withAdded(contact.withId(after.stream().mapToInt((c) -> c.getId()).max().getAsInt()))));
     }
 
-    @Test(enabled = true)
+    @Test(enabled = false)
     public void testBadContactCreation() throws Exception {
         app.contact().returnToHomePage();
         Contacts before = app.db().contacts();
