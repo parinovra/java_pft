@@ -81,7 +81,7 @@ public class ContactCreationTests extends TestBase {
         verifyContactListInUI();
     }
 
-    @Test(enabled = false)
+    @Test(enabled = true)
     public void testBadContactCreation() throws Exception {
         app.contact().returnToHomePage();
         Contacts before = app.db().contacts();

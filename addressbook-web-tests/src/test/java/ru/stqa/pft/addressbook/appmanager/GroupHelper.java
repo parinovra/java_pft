@@ -29,6 +29,9 @@ public class GroupHelper extends HelperBase {
     }
 
     public void returnToGroupPage() {
+        if (isElementPresent(By.name("new"))) { //добавил это условие
+            return;
+        }
         click(By.linkText("group page"));
     }
 

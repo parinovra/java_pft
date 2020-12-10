@@ -243,8 +243,7 @@ public class ContactData {
         if (work != null ? !work.equals(that.work) : that.work != null) return false;
         if (email != null ? !email.equals(that.email) : that.email != null) return false;
         if (email2 != null ? !email2.equals(that.email2) : that.email2 != null) return false;
-        if (email3 != null ? !email3.equals(that.email3) : that.email3 != null) return false;
-        return group != null ? group.equals(that.group) : that.group == null;
+        return email3 != null ? email3.equals(that.email3) : that.email3 == null;
     }
 
     @Override
@@ -259,7 +258,6 @@ public class ContactData {
         result = 31 * result + (email != null ? email.hashCode() : 0);
         result = 31 * result + (email2 != null ? email2.hashCode() : 0);
         result = 31 * result + (email3 != null ? email3.hashCode() : 0);
-        result = 31 * result + (group != null ? group.hashCode() : 0);
         return result;
     }
 }
