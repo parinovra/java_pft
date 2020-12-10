@@ -29,7 +29,7 @@ public class ContactCreationTests extends TestBase {
     public void ensurePreconditions() {
         if (app.db().groups().size() == 0) {
             app.goTo().groupPage();
-            app.group().create(new GroupData().withName("test1"));
+            app.group().create(new GroupData().withName("test 1"));
             app.contact().returnToHomePage();
         }
     }
@@ -86,7 +86,7 @@ public class ContactCreationTests extends TestBase {
         app.contact().returnToHomePage();
         Contacts before = app.db().contacts();
         ContactData contact = new ContactData().withFirstName("John'").withLastName("Doe'").withMobile("88001234567")
-                .withEmail("johndoe@test.com").withGroup("test1");
+                .withEmail("johndoe@test.com").withGroup("test 1");
         app.contact().create(contact, true);
         app.contact().returnToHomePage();
         assertThat(app.contact().count(), equalTo(before.size()));
