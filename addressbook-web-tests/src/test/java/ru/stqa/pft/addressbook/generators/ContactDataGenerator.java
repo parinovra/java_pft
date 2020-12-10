@@ -57,7 +57,9 @@ public class ContactDataGenerator {
             for (ContactData contact : contacts) {
                 writer.write(String.format("%s;%s;%s;%s;%s;%s;%s;%s;%s;%s\n", contact.getFirstName(), contact.getLastName(),
                         contact.getAddress(), contact.getHome(), contact.getMobile(), contact.getWork(),
-                        contact.getEmail(), contact.getEmail2(), contact.getEmail3(), contact.getGroup())); //группу добавить?
+                        contact.getEmail(), contact.getEmail2(), contact.getEmail3()
+//                        , contact.getGroup() //закомментил 7.6
+                ));
             }
         }
     }
@@ -88,7 +90,8 @@ public class ContactDataGenerator {
                     .withWork(String.format("849954321%s", i)).withEmail(String.format("email1.%s@test1.com", i))
                     .withEmail2(String.format("email2.%s@test2.com", i))
                     .withEmail3(String.format("email3.%s@test3.com", i))
-                    .withGroup(String.format("test 1", i)));
+//                    .withGroup(String.format("test 1", i)) //закомментил 7.6
+            );
         }
         return contacts;
     }

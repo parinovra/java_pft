@@ -17,12 +17,14 @@ public class ContactPhoneTests extends TestBase {
     public void ensurePreconditions() {
         if (app.db().groups().size() == 0) {
             app.goTo().groupPage();
-            app.group().create(new GroupData().withName("test1"));
+            app.group().create(new GroupData().withName("test 1"));
             app.contact().returnToHomePage();
         }
         if (app.db().contacts().size() == 0) {
             app.contact().create(new ContactData().withFirstName("111").withLastName("222").withHome("111")
-                    .withMobile("222").withWork("333").withEmail("111.222@").withGroup("test1"), true);
+                    .withMobile("222").withWork("333").withEmail("111.222@")
+//                    .withGroup("test 1") //закомментил 7.6
+                    , true);
         }
     }
 
@@ -39,14 +41,6 @@ public class ContactPhoneTests extends TestBase {
     }
 
     private String mergePhones(ContactData contact) {
-//        это старая школа
-//        String result = "";
-//        if (contact.getHome() != null) {
-//            result = result + contact.getHome();
-//        }
-//        return result;
-
-//        а это новая с помощью элементов функционального программирования
         return Arrays.asList(contact.getHome(), contact.getMobile(), contact.getWork())
                 .stream().filter((s) -> !s.equals(""))
                 .map(ContactPhoneTests::cleaned)

@@ -7,6 +7,8 @@ import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.io.File;
+import java.util.HashSet;
+import java.util.Set;
 
 @XStreamAlias("contact")
 @Entity
@@ -66,15 +68,20 @@ public class ContactData {
     @Transient
     private String allEmails;
 
-    @Expose
-    @Transient //это значит прорустить поле, НЕ извлекать из БД
-    private String group;
-
     @Transient
 //    @Column(name = "photo")
 //    @Type(type = "text")
-//    private File photo;
     private String photo; //изменили тип с File на String, чтобы Hibernate понял, какой тип поля в БД
+
+    @ManyToMany(fetch = FetchType.EAGER) //по умолчанию запускается LAZY (как можно меньше информации), а EAGER - это как можно больше за один заход
+    @JoinTable(name = "address_in_groups",
+            joinColumns = @JoinColumn(name = "id"), inverseJoinColumns = @JoinColumn(name = "group_id"))
+    private Set<GroupData> groups = new HashSet<GroupData>();
+
+    public Groups getGroups() {
+        return new Groups(groups);
+    }
+
 
     public ContactData withId(int id) {
         this.id = id;
@@ -126,11 +133,6 @@ public class ContactData {
         return this;
     }
 
-    public ContactData withGroup(String group) {
-        this.group = group;
-        return this;
-    }
-
     public String getAllPhones() {
         return allPhones;
     }
@@ -164,10 +166,6 @@ public class ContactData {
     public int getId() {
         return id;
     }
-
-
-
-
 
     public String getFirstName() {
         return firstName;
@@ -205,10 +203,6 @@ public class ContactData {
         return email3;
     }
 
-    public String getGroup() {
-        return group;
-    }
-
 
     @Override
     public String toString() {
@@ -223,7 +217,6 @@ public class ContactData {
                 ", email='" + email + '\'' +
                 ", email2='" + email2 + '\'' +
                 ", email3='" + email3 + '\'' +
-                ", group='" + group + '\'' +
                 '}';
     }
 

@@ -80,7 +80,9 @@ public class TestBase {
                     .map((c) -> new ContactData().withId(c.getId()).withFirstName(c.getFirstName())
                             .withLastName(c.getLastName()).withAddress(c.getAddress()).withHome(c.getHome())
                             .withMobile(c.getMobile()).withEmail(c.getEmail()).withEmail2(c.getEmail2())
-                            .withEmail3(c.getEmail3()).withGroup(c.getGroup()))
+                            .withEmail3(c.getEmail3())
+//                            .withGroup(c.getGroup()) //закомментил 7.6
+                    )
                     .collect(Collectors.toSet()))); //поправить, если что
         }
     }
