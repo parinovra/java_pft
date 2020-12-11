@@ -33,7 +33,11 @@ public class ContactHelper extends HelperBase {
 //        attach(By.name("photo"),contactData.getPhoto()); //пришлось закомментить, т. к. hibernate плохо сравнивал
 
         if (creation) {
-//            new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup()); //пока закомментили 7.6
+            if (contactData.getGroups().size() > 0) {
+                Assert.assertTrue(contactData.getGroups().size() == 1);
+                new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroups().iterator()
+                        .next().getName()); //пока закомментили 7.6 - > раскомментили
+            }
         } else {
             Assert.assertFalse(isElementPresent(By.name("new_group")));
         }

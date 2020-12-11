@@ -85,10 +85,11 @@ public class ContactCreationTests extends TestBase {
 
     @Test(enabled = true)
     public void testBadContactCreation() throws Exception {
+        Groups groups = app.db().groups();
         app.contact().returnToHomePage();
         Contacts before = app.db().contacts();
         ContactData contact = new ContactData().withFirstName("John'").withLastName("Doe'").withMobile("88001234567")
-                .withEmail("johndoe@test.com");
+                .withEmail("johndoe@test.com").inGroup(groups.iterator().next());
         app.contact().create(contact, true);
         app.contact().returnToHomePage();
         assertThat(app.contact().count(), equalTo(before.size()));
