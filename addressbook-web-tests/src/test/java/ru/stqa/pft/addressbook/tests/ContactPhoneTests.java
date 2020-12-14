@@ -30,7 +30,6 @@ public class ContactPhoneTests extends TestBase {
 
     @Test
     public void testContactPhones() {
-//        app.goTo().gotoHomepage(); //в лекции, а у меня в ApplicationManager такого перехода нет, потому заюзаю строчку ниже
         app.contact().returnToHomePage();
         ContactData contact = app.contact().all().iterator().next();
         ContactData contactInfoFromEditForm = app.contact().infoFromEditForm(contact);

@@ -7,6 +7,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
+import ru.stqa.pft.addressbook.model.GroupData;
 
 import java.util.List;
 
@@ -36,7 +37,7 @@ public class ContactHelper extends HelperBase {
             if (contactData.getGroups().size() > 0) {
                 Assert.assertTrue(contactData.getGroups().size() == 1);
                 new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroups().iterator()
-                        .next().getName()); //пока закомментили 7.6 - > раскомментили
+                        .next().getName());
             }
         } else {
             Assert.assertFalse(isElementPresent(By.name("new_group")));
@@ -46,7 +47,6 @@ public class ContactHelper extends HelperBase {
     public void submitContactCreation() {
         click(By.xpath("(//input[@name='submit'])[2]"));
     }
-
 
     public void submitContactModification() {
         click(By.xpath("(//input[@name='update'])[2]"));
@@ -68,6 +68,8 @@ public class ContactHelper extends HelperBase {
         }
         click(By.linkText("home")); //сверху в меню
     }
+
+
 
     public void create(ContactData contact, boolean b) {
         initContactCreation();
@@ -91,6 +93,37 @@ public class ContactHelper extends HelperBase {
         contactCache = null;
         returnToHomePage();
     }
+
+
+
+
+    public void add(ContactData contact, GroupData group) {
+        selectContactById(contact.getId());
+        new Select(wd.findElement(By.name("to_group"))).selectByVisibleText(group.getName());
+        addToGroup(group.getName());
+    }
+
+    public void remove(ContactData contact, GroupData group) {
+        selectGroupByName(group.getName());
+        selectContactById(contact.getId());
+        removeFromGroup(group.getName());
+    }
+
+    public void selectGroupByName(String name) {
+        new Select(wd.findElement(By.name("group"))).selectByVisibleText(name);
+    }
+
+    private void addToGroup(String name) {
+        click(By.name("add"));
+    }
+
+    private void removeFromGroup(String name) {
+        click(By.name("remove"));
+    }
+
+
+
+
 
     public boolean isThereAContact() {
         return isElementPresent(By.name("selected[]"));
@@ -140,14 +173,16 @@ public class ContactHelper extends HelperBase {
     }
 
     public void initContactModificationById(int id) {
-//        wd.findElement(By.xpath("//a[@href='edit.php?id=" + id + "']")).click(); //было
+        //было
+//        wd.findElement(By.xpath("//a[@href='edit.php?id=" + id + "']")).click();
 
+        //стало
 //        WebElement checkbox = wd.findElement(By.cssSelector(String.format("input[value='%s']", id))); //находим чекбокс checkbox
 //        WebElement row = checkbox.findElement(By.xpath("./../..")); //нашли нужную строку row: поиск относительно чекбокса по xpath, поднялись на два уровня вверх (к ячейке таблицы, а потом к строке таблицы)
 //        List<WebElement> cells = row.findElements(By.tagName("td")); //ищем ячейку с карандашом
 //        cells.get(7).findElement(By.tagName("a")).click(); //среди ячеек взяли по номеру нужную (8-й столбец, если считать с нуля, то 7-й)
 
-//        четрые строки выше заменяет любая одна из ниже расположенных:
+        //четрые строки выше заменяет любая одна из ниже расположенных:
 //        wd.findElement(By.xpath(String.format("//input[@value='%s']/../../td[8]/a", id))).click();
 //        wd.findElement(By.xpath(String.format("//tr[.input[@value='%s']]/td[8]/a", id))).click();
         wd.findElement(By.cssSelector(String.format("a[href='edit.php?id=%s']", id))).click();

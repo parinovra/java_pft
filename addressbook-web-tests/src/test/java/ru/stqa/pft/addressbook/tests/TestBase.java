@@ -83,7 +83,7 @@ public class TestBase {
                             .withEmail3(c.getEmail3())
 //                            .withGroup(c.getGroup()) //закомментил 7.6
                     )
-                    .collect(Collectors.toSet()))); //поправить, если что
+                    .collect(Collectors.toSet())));
         }
     }
 }
