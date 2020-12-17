@@ -18,6 +18,7 @@ public class ApplicationManager {
 
     private String browser;
     private RegistrationHelper registrationHelper;
+    private FtpHelper ftp;
 
     public ApplicationManager(String browser) throws IOException {
         this.browser = browser;
@@ -48,6 +49,13 @@ public class ApplicationManager {
             registrationHelper = new RegistrationHelper(this); //параметр this - ссылка на ApplicationManager
         }
         return registrationHelper;
+    }
+
+    public FtpHelper ftp() {
+        if (ftp == null) { //т. е. помощник еще не инициализирован (ленивая инициализация?)
+            ftp = new FtpHelper(this);
+        }
+        return ftp;
     }
 
     public WebDriver getDriver() {
