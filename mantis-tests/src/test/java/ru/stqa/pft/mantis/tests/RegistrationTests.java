@@ -14,7 +14,7 @@ import static org.testng.Assert.assertTrue;
 
 public class RegistrationTests extends TestBase {
 
-    @BeforeMethod
+    //@BeforeMethod
     public void startMailServer() {
         app.mail().start();
     }
@@ -24,9 +24,13 @@ public class RegistrationTests extends TestBase {
         long now = System.currentTimeMillis(); //возвращает текущее время в мс от 01.01.1970
         String user = String.format("user%s", now);
         String password = "password";
-        String email = String.format("user%s@localhost.localdomain", now); //первый параметр - шаблон, второй - переменная
+        String email = String.format("user%s@localhost", now); //первый параметр - шаблон, второй - переменная
+        app.james().createUser(user, password);
         app.registration().start(user, email);
-        List<MailMessage> mailMessages = app.mail().waitForMail(2, 10000);
+        //здесь получаем почту встроенным почтовым клиентом
+        //List<MailMessage> mailMessages = app.mail().waitForMail(2, 10000);
+        //здесь получваем почту внешним почтовым клиентом
+        List<MailMessage> mailMessages = app.james().waitForMail(user, password, 60000);
         String confirmationLink = findConfirmationLink(mailMessages, email);
         app.registration().finish(confirmationLink, password);
         assertTrue(app.newSession().login(user, password));
@@ -38,7 +42,7 @@ public class RegistrationTests extends TestBase {
         return regex.getText(mailMessage.text);
     }
 
-    @AfterMethod(alwaysRun = true) //чтобы тестовый почтовый сервер останавливался даже когда тест упал
+    //@AfterMethod(alwaysRun = true) //чтобы тестовый почтовый сервер останавливался даже когда тест упал
     public void stopMailServer() {
         app.mail().stop();
     }
