@@ -18,9 +18,11 @@ public class ApplicationManager {
 
     private String browser;
     private RegistrationHelper registrationHelper;
+    private ChangePasswordHelper changePasswordHelper;
     private FtpHelper ftp;
     private MailHelper mailHelper;
     private JamesHelper jamesHelper;
+    private DbHelper dbHelper;
 
     public ApplicationManager(String browser) throws IOException {
         this.browser = browser;
@@ -53,11 +55,25 @@ public class ApplicationManager {
         return registrationHelper;
     }
 
+    public ChangePasswordHelper changePassword() {
+        if (changePasswordHelper == null) {
+            changePasswordHelper = new ChangePasswordHelper(this); //параметр this - ссылка на ApplicationManager
+        }
+        return changePasswordHelper;
+    }
+
     public FtpHelper ftp() {
-        if (ftp == null) { //т. е. помощник еще не инициализирован (ленивая инициализация?)
+        if (ftp == null) { //т. е. помощник еще не инициализирован (ленивая инициализация)
             ftp = new FtpHelper(this);
         }
         return ftp;
+    }
+
+    public DbHelper db() {
+        if (dbHelper == null) {
+            dbHelper = new DbHelper(this);
+        }
+        return dbHelper;
     }
 
     public WebDriver getDriver() {

@@ -14,6 +14,7 @@ import static org.testng.Assert.assertTrue;
 
 public class RegistrationTests extends TestBase {
 
+    //закомментить (//@BeforeMethod) для james, раскомментить для встроенного
     //@BeforeMethod
     public void startMailServer() {
         app.mail().start();
@@ -27,9 +28,12 @@ public class RegistrationTests extends TestBase {
         String email = String.format("user%s@localhost", now); //первый параметр - шаблон, второй - переменная
         app.james().createUser(user, password);
         app.registration().start(user, email);
+
+        //переключить на встроенный? 1 письмо, а не 2?
         //здесь получаем почту встроенным почтовым клиентом
         //List<MailMessage> mailMessages = app.mail().waitForMail(2, 10000);
-        //здесь получваем почту внешним почтовым клиентом
+
+        //здесь получаем почту внешним почтовым клиентом
         List<MailMessage> mailMessages = app.james().waitForMail(user, password, 60000);
         String confirmationLink = findConfirmationLink(mailMessages, email);
         app.registration().finish(confirmationLink, password);
@@ -42,6 +46,7 @@ public class RegistrationTests extends TestBase {
         return regex.getText(mailMessage.text);
     }
 
+    //закомментить (//@AfterMethod) для james, раскомментить для встроенного
     //@AfterMethod(alwaysRun = true) //чтобы тестовый почтовый сервер останавливался даже когда тест упал
     public void stopMailServer() {
         app.mail().stop();

@@ -7,6 +7,7 @@ $g_db_password            = '';
 $g_signup_use_captcha     = OFF;
 $g_phpMailer_method       = PHPMAILER_METHOD_SMTP; //способ доставки почты - протокол smtp
 $g_smtp_host              = 'localhost'; //адрес доставки почты
+$g_enable_email_notification = ON;
 
 $g_default_timezone       = 'Europe/Moscow';
 

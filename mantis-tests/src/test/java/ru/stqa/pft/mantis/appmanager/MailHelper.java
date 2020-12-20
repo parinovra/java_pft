@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class MailHelper {
+
     private ApplicationManager app;
     private final Wiser wiser;
 
@@ -27,7 +28,7 @@ public class MailHelper {
                 return wiser.getMessages().stream().map((m) -> toModelMail(m)).collect(Collectors.toList());
             }
             try {
-                Thread.sleep(1000); //ms
+                Thread.sleep(10000); //ms
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
