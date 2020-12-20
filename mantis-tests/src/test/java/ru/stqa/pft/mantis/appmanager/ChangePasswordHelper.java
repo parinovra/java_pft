@@ -24,10 +24,10 @@ public class ChangePasswordHelper extends HelperBase {
         click(By.cssSelector("input[value='Сбросить пароль']"));
     }
 
-    public void finish(String confirmationLink, String newPassword) {
+    public void finish(String confirmationLink, String password) {
         wd.get(confirmationLink);
-        type(By.name("password"), newPassword);
-        type(By.name("password_confirm"), newPassword);
+        type(By.name("password"), password);
+        type(By.name("password_confirm"), password);
         click(By.tagName("button"));
     }
 }

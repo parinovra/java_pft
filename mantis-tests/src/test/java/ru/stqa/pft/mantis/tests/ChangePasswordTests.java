@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 public class ChangePasswordTests extends TestBase {
 
     //закомментить (//@BeforeMethod) для james, раскомментить для встроенного
-//    @BeforeMethod
+    @BeforeMethod
     public void startMailServer() {
         app.mail().start();
     }
@@ -43,7 +43,7 @@ public class ChangePasswordTests extends TestBase {
     }
 
     //закомментить (//@AfterMethod) для james, раскомментить для встроенного
-//    @AfterMethod(alwaysRun = true) //чтобы тестовый почтовый сервер останавливался даже когда тест упал
+    @AfterMethod(alwaysRun = true) //чтобы тестовый почтовый сервер останавливался даже когда тест упал
     public void stopMailServer() {
         app.mail().stop();
     }
