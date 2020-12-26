@@ -8,6 +8,10 @@ dependencies {
     implementation 'org.testng:testng:7.3.0'
 }
 
+test {
+    useTestNG()
+}
+
 buildscript{
     repositories{
         jcenter()
