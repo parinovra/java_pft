@@ -4,7 +4,8 @@ public class Issue {
 
     private int id;
     private String subject;
-    private String Description;
+    private String description;
+    private String status;
 
     public int getId() {
         return id;
@@ -25,12 +26,31 @@ public class Issue {
     }
 
     public String getDescription() {
-        return Description;
+        return description;
     }
 
     public Issue withDescription(String description) {
-        Description = description;
+        this.description = description;
         return this;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public Issue withStatus(String status) {
+        this.status = status;
+        return this;
+    }
+
+    @Override
+    public String toString() {
+        return "Issue{" +
+                "id=" + id +
+                ", subject='" + subject + '\'' +
+                ", description='" + description + '\'' +
+                ", status='" + status + '\'' +
+                '}';
     }
 
     @Override
@@ -42,14 +62,14 @@ public class Issue {
 
         if (id != issue.id) return false;
         if (subject != null ? !subject.equals(issue.subject) : issue.subject != null) return false;
-        return Description != null ? Description.equals(issue.Description) : issue.Description == null;
+        return description != null ? description.equals(issue.description) : issue.description == null;
     }
 
     @Override
     public int hashCode() {
         int result = id;
         result = 31 * result + (subject != null ? subject.hashCode() : 0);
-        result = 31 * result + (Description != null ? Description.hashCode() : 0);
+        result = 31 * result + (description != null ? description.hashCode() : 0);
         return result;
     }
 }
