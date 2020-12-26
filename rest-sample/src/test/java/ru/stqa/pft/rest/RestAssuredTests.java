@@ -13,7 +13,7 @@ import java.util.Set;
 
 import static org.testng.Assert.assertEquals;
 
-public class RestAssuredTests {
+public class RestAssuredTests extends TestBase {
 
     @BeforeClass
     public void init() {
@@ -22,6 +22,7 @@ public class RestAssuredTests {
 
     @Test
     public void testCreateIssue() throws IOException {
+        skipIfNotFixed(4); //1 - Resolved, 2 - Closed, 4 - Deleted  https://bugify.stqa.ru/api/issues/1.json?api_key=288f44776e7bec4bf44fdfeb1e646490
         Set<Issue> oldIssues = getIssues();
         Issue newIssue = new Issue().withSubject("Test issue").withDescription("New test issue");
         int issueId = createIssue(newIssue);
