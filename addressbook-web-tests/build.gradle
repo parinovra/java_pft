@@ -18,9 +18,9 @@ dependencies {
     implementation 'ch.qos.logback:logback-classic:1.2.3'
     implementation 'mysql:mysql-connector-java:8.0.22'
     implementation 'org.hibernate:hibernate-core:5.4.24.Final'
-
     agent "org.aspectj:aspectjweaver:1.8.0"
     implementation "ru.yandex.qatools.allure:allure-testng-adaptor:1.4.0.RC4"
+    implementation 'org.robotframework:robotframework:3.2.2'
 }
 
 task testGroups(type: Test) {
@@ -65,4 +65,11 @@ task testContacts(type: Test) {
 
 testContacts.doFirst {
     jvmArgs "-javaagent:${configurations.agent.singleFile}"
+}
+
+task rf(type: JavaExec) {
+    main = 'org.robotframework.RobotFramework'
+    classpath = sourceSets.test.runtimeClasspath
+    args '--outputdir', 'build/rf-report'
+    args 'src/test/resources/rf' //сценарии здесь
 }
