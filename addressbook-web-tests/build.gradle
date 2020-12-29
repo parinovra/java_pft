@@ -25,6 +25,28 @@ dependencies {
     implementation 'info.cukes:cucumber-testng:1.2.6'
 }
 
+task testAll(type: Test) {
+    useTestNG {
+        suites 'src/test/resources/testng-all.xml'
+    }
+    if (project.hasProperty('browser')) {
+        systemProperty 'browser', "${browser}"
+    } //иначе будет определено дефолтное значение из TestBase (строка 11)
+    if (project.hasProperty('platform')) {
+        systemProperty 'platform', "${platform}"
+    }
+    if (project.hasProperty('target')) {
+        systemProperty 'target', "${target}"
+    }
+    if (project.hasProperty('verifyUI')) {
+        systemProperty 'verifyUI', "${verifyUI}"
+    }
+}
+
+testAll.doFirst {
+    jvmArgs "-javaagent:${configurations.agent.singleFile}"
+}
+
 task testGroups(type: Test) {
     useTestNG {
         suites 'src/test/resources/testng-groups.xml'
